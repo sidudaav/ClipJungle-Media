@@ -4,21 +4,21 @@ from taggit.managers import TaggableManager
 from django.utils.text import slugify
 
 class Video(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="videosPosted")
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="videos_posted")
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000, blank=True)
 
     slug = models.SlugField(unique=False, max_length=100)
     tags = TaggableManager()
 
-    videoFile = models.FileField(upload_to='video_files')
-    createdOn = models.DateTimeField(auto_now_add=True)
+    video_file = models.FileField(upload_to='video_files')
+    created_on = models.DateTimeField(auto_now_add=True)
 
-    hotScore = models.FloatField(null=True)
-    Likes = models.ManyToManyField(Profile,
-        related_name='videosLiked', blank=True)
+    hot_score = models.FloatField(null=True)
+    likes = models.ManyToManyField(Profile,
+        related_name='videos_liked', blank=True)
 
-    allowComments = models.BooleanField(default=True)
+    allow_comments = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -33,4 +33,4 @@ class Video(models.Model):
         self.allow_comments = False
 
     class Meta:
-        ordering = ('-createdOn',)
+        ordering = ('-created_on',)
