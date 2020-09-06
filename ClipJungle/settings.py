@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'profiles.apps.ProfilesConfig',
     'videos.apps.VideosConfig',
+    'categories.apps.CategoriesConfig',
     'taggit',
 ]
 
