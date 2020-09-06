@@ -8,7 +8,7 @@ class Profile(models.Model):
 
     public = models.BooleanField(default=True)
 
-    totalLikes = models.PositiveIntegerField(default=0)
+    total_likes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f'{self.user.username} Profile'
