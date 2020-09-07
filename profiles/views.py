@@ -23,6 +23,10 @@ def register(request):
         Profile.objects.create(user=user)
         
         return JsonResponse({'status': 'OK'})
+        
+    if request.user.is_authenticated:
+        return redirect("profiles:success-page")
+        
     return render(request, 'profiles/register.html')
 
 def login(request):
@@ -48,6 +52,9 @@ def login(request):
         })
 
     print(request.user.is_authenticated)
+
+    if request.user.is_authenticated:
+        return redirect("profiles:success-page")
 
     return render(request, 'profiles/login.html')
 
