@@ -21,3 +21,6 @@ def register(request):
         
         return JsonResponse({'status': 'OK'})
     return render(request, 'profiles/register.html')
+
+def login(request):
+    return render(request, 'profiles/login.html')

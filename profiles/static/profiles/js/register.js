@@ -24,13 +24,11 @@ $(document).ready(() => {
         passwordField: $('#password'),
     }
 
-    const firstNameField = $('#firstName')
-
     DOMStrings.registrationForm.on('submit', e => {
         e.preventDefault()
         console.log('submitted!')
 
-        $.post('register', 
+        $.post('', 
         {
             firstName: $(DOMStrings.firstNameField).val(),
             lastName: $(DOMStrings.lastNameField).val(),
