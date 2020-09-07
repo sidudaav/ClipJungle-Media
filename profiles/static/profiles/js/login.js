@@ -19,6 +19,8 @@ $(document).ready(() => {
                 $(DOMStrings.errorText).text(data.msg)
             } else {
                 $(DOMStrings.errorText).text('')
+                $(DOMStrings.emailField).val('')
+                $(DOMStrings.passwordField).val('')
             }
         })
     })
