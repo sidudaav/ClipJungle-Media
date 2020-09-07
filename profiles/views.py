@@ -97,6 +97,7 @@ def block_profile(request):
     
     return JsonResponse({ 'status': 'KO' })
 
+@login_required
 def follow_profile(request):
     profile_id = request.POST.get('id')
     public = request.POST.get('public')
@@ -115,6 +116,25 @@ def follow_profile(request):
             else:
                 ProfileFollowing.objects.filter(profile_from=request.user.profile, profile_to=followed_profile).delete()
                 ProfileFollowRequest.objects.filter(profile_from=request.user.profile, profile_to=followed_profile).delete()
+
+            return JsonResponse({ 'status': 'OK' })
+        
+        except:
+            pass
+    
+    return JsonResponse({ 'status': 'KO' })
+
+@login_required
+def modify_follow_request(request):
+    profile_id = request.POST.get('id')
+    action = request.POST.get('action')
+
+    if profile_id and action:
+        try:
+            profile = get_object_or_404(Profile, id=profile_id)
+            ProfileFollowRequest.objects.filter(user_from=profile, to=request.user.profile).delete()
+            if action == 'accept':
+                ProfileFollowRequest.objects.get_or_create(user_from=profile, to=request.user.profile)
 
             return JsonResponse({ 'status': 'OK' })
         
