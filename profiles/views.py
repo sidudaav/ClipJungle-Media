@@ -26,7 +26,7 @@ def register(request):
         return JsonResponse({'status': 'OK'})
         
     if request.user.is_authenticated:
-        return redirect("profiles:success-page")
+        return redirect("videos:home")
 
     return render(request, 'profiles/register.html')
 
@@ -55,18 +55,13 @@ def login(request):
     print(request.user.is_authenticated)
 
     if request.user.is_authenticated:
-        return redirect("profiles:success-page")
+        return redirect("videos:home")
 
     return render(request, 'profiles/login.html')
 
 def logout(request):
     auth_logout(request)
     return redirect("profiles:login")
-
-@login_required
-def success_page(request):
-    print(request.user)
-    return render(request, 'profiles/success.html')
 
 
 ######################## PROFILE INTERACTION VIEWS ########################

@@ -9,7 +9,7 @@ class Video(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000, blank=True)
 
-    slug = models.SlugField(unique=False, max_length=100)
+    slug = models.SlugField(unique=True, blank=True, max_length=100)
     tags = TaggableManager()
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="videos")
@@ -17,7 +17,7 @@ class Video(models.Model):
     video_file = models.FileField(upload_to='video_files')
     created_on = models.DateTimeField(auto_now_add=True)
 
-    hot_score = models.FloatField(null=True)
+    hot_score = models.FloatField(null=True, blank=True)
     likes = models.ManyToManyField(Profile,
         related_name='videos_liked', blank=True)
 
