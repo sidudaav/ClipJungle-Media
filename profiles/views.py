@@ -3,7 +3,8 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from .models import Profile
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == 'POST':
@@ -49,3 +50,12 @@ def login(request):
     print(request.user.is_authenticated)
 
     return render(request, 'profiles/login.html')
+
+def logout(request):
+    auth_logout(request)
+    return redirect("profiles:login")
+
+@login_required
+def success_page(request):
+    print(request.user)
+    return render(request, 'profiles/success.html')
