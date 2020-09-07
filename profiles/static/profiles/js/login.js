@@ -1,0 +1,26 @@
+$(document).ready(() => {
+    const DOMStrings = {
+        loginForm : $('.form'),
+        emailField: $('#email'),
+        passwordField: $('#password'),
+
+        errorText: $('.error-text'),
+    }
+
+    DOMStrings.loginForm.on('submit', (e) => {
+        e.preventDefault()
+
+        $.post('', 
+        {
+            email: $(DOMStrings.emailField).val(),
+            password: $(DOMStrings.passwordField).val()
+        }, (data) => {
+            if (data.status === 'KO') {
+                $(DOMStrings.errorText).text(data.msg)
+            } else {
+                $(DOMStrings.errorText).text('')
+            }
+        })
+    })
+
+})

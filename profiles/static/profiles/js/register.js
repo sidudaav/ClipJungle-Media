@@ -10,7 +10,6 @@ $(document).ready(() => {
 
     DOMStrings.registrationForm.on('submit', e => {
         e.preventDefault()
-        console.log('submitted!')
 
         $.post('', 
         {
