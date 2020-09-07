@@ -1,5 +1,6 @@
 from django.db import models
 from profiles.models import Profile
+from categories.models import Category
 from taggit.managers import TaggableManager
 from django.utils.text import slugify
 
@@ -10,6 +11,8 @@ class Video(models.Model):
 
     slug = models.SlugField(unique=False, max_length=100)
     tags = TaggableManager()
+
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="videos")
 
     video_file = models.FileField(upload_to='video_files')
     created_on = models.DateTimeField(auto_now_add=True)
