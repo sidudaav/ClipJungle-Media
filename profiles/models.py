@@ -17,3 +17,30 @@ class IssueReport(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="issues_reported")
     body = models.TextField(max_length=1000)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created_on',)
+
+class ProfileFollowRequest(models.Model):
+    profile_from = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='follow_requests_sent')
+    profile_to = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='follot_requests_received')
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created_on',)
+
+class ProfileFollowing(models.Model):
+    profile_from = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    profile_to = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='followers')
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created_on',)
+
+class ProfileBlock(models.Model):
+    profile_from = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='blocking')
+    profile_to = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='blockers')
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created_on',)
