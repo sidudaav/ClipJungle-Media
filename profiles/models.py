@@ -12,6 +12,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+    
+    def update_total_likes(self, *args, **kwargs):
+        profile_videos = self.videos_posted.filter(active=True)
+        
+        total_likes = 0
+        for video in profile_videos:
+            total_likes += video.likes.count()
+        
+        self.total_likes = total_likes
 
 class IssueReport(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="issues_reported")
