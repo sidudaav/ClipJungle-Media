@@ -38,7 +38,13 @@ $(document).ready(() => {
             email: $(DOMStrings.emailField).val(),
             password: $(DOMStrings.passwordField).val()
         }, (data) => {
-            console.log(data, data.status)
+            if (data.status === 'OK') {
+                $(DOMStrings.firstNameField).val(''),
+                $(DOMStrings.lastNameField).val(''),
+                $(DOMStrings.usernameField).val(''),
+                $(DOMStrings.emailField).val(''),
+                $(DOMStrings.passwordField).val('')
+            }
         })
     })
 })

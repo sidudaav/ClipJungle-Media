@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from .models import Profile
 
 def register(request):
     if request.method == 'POST':
@@ -15,6 +16,8 @@ def register(request):
         user.last_name = last_name
 
         user.save()
+
+        Profile.objects.create(user=user)
         
-        return JsonResponse({'status': 'ok'})
+        return JsonResponse({'status': 'OK'})
     return render(request, 'profiles/register.html')
