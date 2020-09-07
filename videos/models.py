@@ -37,3 +37,22 @@ class Video(models.Model):
 
     class Meta:
         ordering = ('-created_on',)
+
+class VideoReport(models.Model):
+    SPAM = 1
+    INAPPROPRIATE = 2
+    OTHER = 3
+    CHOICES = (
+        (SPAM, 'Spam'),
+        (INAPPROPRIATE, 'Inappropriate'),
+        (OTHER, 'Other'),
+    )
+
+    profile = models.ForeignKey(Profile, related_name='videos_reported', on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='reports')
+    choice_reason = models.SmallIntegerField(choices=CHOICES)
+    written_reason = models.TextField(max_length=500)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{} Reported {}'.format(self.user, self.video.user)
