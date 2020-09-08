@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block js %}
+<script src="{% static 'profiles/js/auth.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="text-box">
+            <h1>ClipJungle</h1>
+            <p>Welcome To The Jungle</p>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="auth">
+            <div class="login-form-box">
+                <form class="login-form" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email" id="loginEmail" required>
+                        <label for="loginEmail" class="form-label">Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" id="loginPassword" required>
+                        <label for="loginPassword" class="form-label">Password</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Log In</button>
+                    </div>
+                </form>
+            </div>
+            <div class="register">
+                <a href="#registerPopup" class="btn btn-success">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="register">
+    <div class="register-form-box">
+        <form class="register-form" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="First Name" id="registerFirstName" required>
+                <label for="registerFirstName" class="form-label">First Name</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Last Name" id="registerLastName" required>
+                <label for="registerLastName" class="form-label">Last Name</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" id="registerUsername" required>
+                <label for="registerUsername" class="form-label">Username</label>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" id="registerEmail" required>
+                <label for="registerEmail" class="form-label">Email</label>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" id="registerPassword" required>
+                <label for="registerPassword" class="form-label">Password</label>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register &rarr;</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -5,6 +5,7 @@ from .models import Profile, ProfileBlock, ProfileFollowRequest, ProfileFollowin
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 ######################## BASIC HELPER FUNCTIONS ########################
 def get_user(email):
@@ -14,64 +15,59 @@ def get_user(email):
         return None
 
 ######################## AUUTHENTICATION VIEWS ########################
+@require_POST
 def register(request):
-    if request.method == 'POST':
-        first_name = request.POST.get('firstName')
-        last_name = request.POST.get('lastName')
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+    first_name = request.POST.get('firstName')
+    last_name = request.POST.get('lastName')
+    username = request.POST.get('username')
+    email = request.POST.get('email')
+    password = request.POST.get('password')
 
-        user = User.objects.create_user(username, email, password)
-        user.first_name = first_name
-        user.last_name = last_name
+    user = User.objects.create_user(username, email, password)
+    user.first_name = first_name
+    user.last_name = last_name
 
-        user.save()
+    user.save()
 
-        Profile.objects.create(user=user)
-        
-        return JsonResponse({'status': 'OK'})
-        
-    if request.user.is_authenticated:
-        return redirect("videos:home")
+    Profile.objects.create(user=user)
+    
+    return JsonResponse({'status': 'OK'})
 
-    return render(request, 'profiles/register.html')
-
+@require_POST
 def login(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        
-        username = get_user(email)
-        user = auth_authenticate(username=username, password=password)
+    email = request.POST.get('email')
+    password = request.POST.get('password')
+    
+    username = get_user(email)
+    user = auth_authenticate(username=username, password=password)
 
-        if user is not None:
-            if user.is_active:
-                auth_login(request, user)
-                return JsonResponse({
-                    'url': '/videos/home'
-                })
-            else:
-                pass
-                # Return a 'disabled account' error message
+    if user is not None:
+        if user.is_active:
+            auth_login(request, user)
+            return JsonResponse({
+                'url': '/videos/home'
+            })
         else:
             pass
-            # Return an 'invalid login' error message.
-
-    print(request.user.is_authenticated)
-
-    if request.user.is_authenticated:
-        return redirect("videos:home")
-
-    return render(request, 'profiles/login.html')
+            # Return a 'disabled account' error message
+    else:
+        pass
+        # Return an 'invalid login' error message.
 
 def logout(request):
     auth_logout(request)
-    return redirect("profiles:login")
+    return redirect("profiles:auth")
+
+def auth(request):
+    if request.user.is_authenticated:
+        return redirect("videos:home")
+        
+    return render(request, 'profiles/auth.html')
 
 
 ######################## PROFILE INTERACTION VIEWS ########################
 @login_required
+@require_POST
 def block_profile(request):
     profile_id = request.POST.get('id')
     action = request.POST.get('action')
@@ -99,6 +95,7 @@ def block_profile(request):
     return JsonResponse({ 'status': 'KO' })
 
 @login_required
+@require_POST
 def follow_profile(request):
     profile_id = request.POST.get('id')
     public = request.POST.get('public')
@@ -126,6 +123,7 @@ def follow_profile(request):
     return JsonResponse({ 'status': 'KO' })
 
 @login_required
+@require_POST
 def modify_follow_request(request):
     profile_id = request.POST.get('id')
     action = request.POST.get('action')

@@ -106,7 +106,7 @@ USE_L10N = True
 USE_TZ = True
 
 #############
-LOGIN_URL = "/profiles/login/"
+LOGIN_URL = "/profiles/auth/"
 LOGIN_REDIRECT_URL = "/videos/home"
 
 
