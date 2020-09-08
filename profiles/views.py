@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import Profile, ProfileBlock, ProfileFollowRequest, ProfileFollowing
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.contrib.auth.decorators import login_required
+
+######################## BASIC HELPER FUNCTIONS ########################
+def get_user(email):
+    try:
+        return User.objects.get(email=email)
+    except User.DoesNotExist:
+        return None
 
 ######################## AUUTHENTICATION VIEWS ########################
 def register(request):
@@ -34,23 +41,22 @@ def login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-
-        user = User.objects.all().filter(email = email).first()
         
-        if user:
-            if check_password(password, user.password):
+        username = get_user(email)
+        user = auth_authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
                 auth_login(request, user)
-                return JsonResponse({ 'status': 'OK' })
-
-            return JsonResponse({
-                'status': 'KO',
-                'msg': 'Either Your Email Or Password Is Incorrect'
-            })
-        
-        return JsonResponse({
-            'status': 'KO',
-            'msg': 'Either Your Email Or Password Is Incorrect'
-        })
+                return JsonResponse({
+                    'url': '/videos/home'
+                })
+            else:
+                pass
+                # Return a 'disabled account' error message
+        else:
+            pass
+            # Return an 'invalid login' error message.
 
     print(request.user.is_authenticated)
 

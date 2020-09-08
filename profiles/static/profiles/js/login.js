@@ -15,13 +15,8 @@ $(document).ready(() => {
             email: $(DOMStrings.emailField).val(),
             password: $(DOMStrings.passwordField).val()
         }, (data) => {
-            if (data.status === 'KO') {
-                $(DOMStrings.errorText).text(data.msg)
-            } else {
-                $(DOMStrings.errorText).text('')
-                $(DOMStrings.emailField).val('')
-                $(DOMStrings.passwordField).val('')
-            }
+            console.log(data.url)
+            window.location.href = data.url;
         })
     })
 

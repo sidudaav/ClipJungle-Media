@@ -107,6 +107,7 @@ USE_TZ = True
 
 #############
 LOGIN_URL = "/profiles/login/"
+LOGIN_REDIRECT_URL = "/videos/home"
 
 
 # Static files (CSS, JavaScript, Images)
