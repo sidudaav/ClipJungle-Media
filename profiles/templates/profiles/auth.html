@@ -1,71 +1,73 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'profiles/styles/auth.css' %}">
+{% endblock %}
+
 {% block js %}
 <script src="{% static 'profiles/js/auth.js' %}"></script>
 {% endblock %}
 
 
 {% block content %}
-<div class="row">
-    <div class="col-lg-6">
-        <div class="text-box">
-            <h1>ClipJungle</h1>
-            <p>Welcome To The Jungle</p>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="auth">
-            <div class="login-form-box">
-                <form class="login-form" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email" id="loginEmail" required>
-                        <label for="loginEmail" class="form-label">Email</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" id="loginPassword" required>
-                        <label for="loginPassword" class="form-label">Password</label>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Log In</button>
-                    </div>
-                </form>
-            </div>
-            <div class="register">
-                <a href="#registerPopup" class="btn btn-success">Register</a>
+<div class="container main-container">
+    <div class="row  h-100">
+        <div class="col-lg-6">
+            <div class="text-box">
+                <h1 class="text-header">ClipJungle</h1>
+                <p class="text-sub">View and share your awesome sports clips with friends on ClipJungle.</p>
             </div>
         </div>
+        <div class="col-lg-6">
+            <div class="auth">
+                <div class="login-form-box">
+                    <form class="login-form" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" id="loginPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-login">Log In</button>
+                        </div>
+                        <div class="form-group">
+                            <a href="#register-popup">
+                                <button type="button" class="btn btn-register-popup">Register</button>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<div id="register">
-    <div class="register-form-box">
-        <form class="register-form" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="First Name" id="registerFirstName" required>
-                <label for="registerFirstName" class="form-label">First Name</label>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Last Name" id="registerLastName" required>
-                <label for="registerLastName" class="form-label">Last Name</label>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username" id="registerUsername" required>
-                <label for="registerUsername" class="form-label">Username</label>
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" id="registerEmail" required>
-                <label for="registerEmail" class="form-label">Email</label>
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" id="registerPassword" required>
-                <label for="registerPassword" class="form-label">Password</label>
-            </div>
-            <div class="form-group">
-                <button type="submit">Register &rarr;</button>
-            </div>
-        </form>
+    <div class="register-popup" id="register-popup">
+        <div class="register-form-box">
+            <a href="#main" class="register-popup-close">&times;</a>
+            <form class="register-form" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First Name" id="registerFirstName" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Last Name" id="registerLastName" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-register">Register &rarr;</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

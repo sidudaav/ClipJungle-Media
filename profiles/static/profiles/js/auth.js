@@ -12,6 +12,21 @@ $(document).ready(() => {
         registerPasswordField: $('#registerPassword'),
     }
 
+    // function does not work yet
+    const clearAllInput = () => {
+        console.log('Hi', DOMStrings)
+        $(DOMStrings.loginEmailField).val(''),
+        $(DOMStrings.loginPasswordField).val(''),
+
+        console.log('Again')
+
+        $(DOMStrings.registerFirstNameField).val(''),
+        $(DOMStrings.registerLastNameField).val(''),
+        $(DOMStrings.registerUsernameField).val(''),
+        $(DOMStrings.registerEmailField).val(''),
+        $(DOMStrings.registerPasswordField).val('')
+    }
+
     DOMStrings.loginForm.on('submit', (e) => {
         e.preventDefault()
 
@@ -37,11 +52,7 @@ $(document).ready(() => {
             password: $(DOMStrings.registerPasswordField).val()
         }, (data) => {
             if (data.status === 'OK') {
-                $(DOMStrings.registerFirstNameField).val(''),
-                $(DOMStrings.registerLastNameField).val(''),
-                $(DOMStrings.registerUsernameField).val(''),
-                $(DOMStrings.registerEmailField).val(''),
-                $(DOMStrings.registerPasswordField).val('')
+                clearAllInput()
             }
         })
     })

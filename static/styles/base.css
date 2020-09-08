@@ -10,16 +10,21 @@
 
 :root {
     --color-primary: #55c57a;
+    --color-primary-extra-light: lightgreen;
     --color-primary-light: #7ed56f;
     --color-primary-dark: #28b485;
+
+    --color-tertiary-light: #00acee;
+    --color-tertiary-dark: #009bd8;
 
     --color-secondary: #14171A;
 
     --color-extra-light-grey: #E1E8ED;
     --color-light-grey: #AAB8C2;
     --color-dark-grey: #657786;
-
+ 
     --color-white: #fff;
+    --color-white-dark: #f4f4f4;
     --color-black: #000;
 }
 
@@ -30,4 +35,6 @@ html {
 body {
     box-sizing: border-box;
     font-family: "Lato", sans-serif;
+    line-height: 1.7;
+    font-weight: 400;
 }
