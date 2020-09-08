@@ -1,0 +1,30 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit
+}
+
+:root {
+    --color-primary: #55c57a;
+    --color-primary-light: #7ed56f;
+    --color-primary-dark: #28b485;
+
+    --color-secondary: #14171A;
+
+    --color-extra-light-grey: #E1E8ED;
+    --color-light-grey: #AAB8C2;
+    --color-dark-grey: #657786;
+
+    --color-white: #fff;
+    --color-black: #000;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+}
