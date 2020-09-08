@@ -37,11 +37,7 @@ def home(request):
 
     following_list = map(get_profile, following_list)
 
-    print(following_list)
-
     video_list = Video.objects.filter(active=True, profile__user__is_active=True,
         profile__in=following_list).order_by('-created_on')
     
-    print(video_list)
-
     return render(request, 'videos/home.html')
