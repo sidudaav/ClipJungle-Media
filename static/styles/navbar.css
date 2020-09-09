@@ -1,11 +1,35 @@
-.nav-container {
-    margin-left: auto;
+.navbar {
+    height: 6rem;
+    padding-right: 10rem;
+    padding-left: 3rem;
+}
+
+.navbar-brand {
+    color: var(--color-primary-dark) !important;
+    margin-left: 5rem;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.left-nav {
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translateY(-50%);
 }
 
 .search-form {
     display: inline-block;
+    margin-right: 2rem;
+    transform: scale(1.15);
 }
 
-.username {
-    display: inline-block;
+.search-form input[type=search] {
+    border: 1px solid var(--color-tertiary-light);
+    border-radius: 20rem;
+    transition: all 200ms;
+}
+
+.search-form input[type=search]:focus {
+    transform: scaleX(1.15);
 }
