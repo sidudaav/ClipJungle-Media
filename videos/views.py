@@ -41,7 +41,8 @@ def home(request):
         profile__in=following_list).order_by('-created_on')
     
     context = {
-        'title': 'Home' 
+        'title': 'Home',
+        'videos': videos, 
     }
     
     return render(request, 'videos/home.html', context)

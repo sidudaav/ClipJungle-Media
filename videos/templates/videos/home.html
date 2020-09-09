@@ -1,8 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/navbar.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
 {% block content %}
 <div class="home">
     <h1>Home Page!</h1>
+    {% for video in videos %}
+    <div>
+        {{ video.profile.user.username }}
+        {{ video.tags }}
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}

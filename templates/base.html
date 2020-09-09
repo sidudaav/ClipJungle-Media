@@ -22,6 +22,8 @@
     {% endif %}
   </head>
   <body>
+    {% block navbar %}{% endblock %}
+
     <div class="main" id="main">
         {% block content %}{% endblock %}
     </div>
