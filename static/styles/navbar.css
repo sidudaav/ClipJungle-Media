@@ -1,24 +1,25 @@
-.navbar {
+/* TOP NAVBAR */
+.navbar-top {
     height: 6rem;
     padding-right: 10rem;
     padding-left: 3rem;
 }
 
-.navbar-brand {
+.navbar-top .navbar-brand {
     color: var(--color-primary-dark) !important;
     margin-left: 5rem;
     font-size: 2rem;
     font-weight: 900;
 }
 
-.left-nav {
+.navbar-top .left-nav {
     position: absolute;
     top: 50%;
     left: 65%;
     transform: translateY(-50%);
 }
 
-.search-form {
+.navbar-top .search-form {
     display: inline-block;
     margin-right: 2rem;
     transform: scale(1.15);
@@ -26,23 +27,23 @@
     margin-bottom: auto;
 }
 
-.search-form input[type=search] {
+.navbar-top .search-form input[type=search] {
     border: 1px solid var(--color-tertiary-light);
     border-radius: 20rem;
     transition: all 200ms;
 }
 
-.search-form input[type=search]:focus {
+.navbar-top .search-form input[type=search]:focus {
     transform: scaleX(1.15);
     margin-right: 2.15rem;
     border-color: var(--color-primary-dark);
 }
 
-.nav-profile-img {
+.navbar-top .nav-profile-img {
     width: 4rem;
 }
 
-.nav-username {
+.navbar-top .nav-username {
     color: var(--color-primary-dark);
     font-size: 1.2rem;
     font-weight: 900;
