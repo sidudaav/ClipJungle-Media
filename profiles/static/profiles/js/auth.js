@@ -111,8 +111,8 @@ $(document).ready(() => {
         }
 
         return true
-    }    
-
+    }
+    
     // Handle submit for login form
     DOMStrings.loginForm.on('submit', (e) => {
         e.preventDefault()

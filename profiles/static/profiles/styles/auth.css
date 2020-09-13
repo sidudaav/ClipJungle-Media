@@ -2,8 +2,8 @@
     height: 100vh;
 }
 
-input.animated {
-    animation: shakeField 600ms ease-out;
+input[type='email'] {
+    text-transform: lowercase;
 }
 
 /* CSS FOR MAIN TEXT */
