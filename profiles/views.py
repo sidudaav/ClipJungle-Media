@@ -6,8 +6,10 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from .utils import get_user_by_email, get_user_by_username
-from django.core.mail import EmailMessage
+from .utils import get_user_by_email, get_user_by_username, send_verification_email
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from .tokens import account_activation_token
 
 
 ######################## AUUTHENTICATION VIEWS ########################
@@ -40,16 +42,7 @@ def register(request):
     user.is_active = False
     user.save()
 
-    email = EmailMessage(
-        'Hello',
-        'Body goes here',
-        'from@example.com',
-        [email],
-    )
-
-    email.send(fail_silently=False)
-
-    Profile.objects.create(user=user)
+    send_verification_email('localhost:8000', user.id)
     
     return JsonResponse({'status': 'OK'})
 
@@ -92,6 +85,22 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect("profiles:auth")
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(id=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+
+        user.save()
+        Profile.objects.create(user=user)
+        
+        return redirect('profiles:auth')
+    else:
+        return redirect('profiles:auth')
 
 def auth(request):
     if request.user.is_authenticated:
