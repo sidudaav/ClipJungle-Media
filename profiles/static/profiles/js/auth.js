@@ -117,12 +117,23 @@ $(document).ready(() => {
     DOMStrings.loginForm.on('submit', (e) => {
         e.preventDefault()
 
+        clearErrorMessages()
+
         $.post("login/", 
         {
             email: $(DOMStrings.loginEmailField).val(),
             password: $(DOMStrings.loginPasswordField).val()
         }, (data) => {
-            window.location.href = data.url;
+            if (data.status === 'KO') {
+                if (data.errorField === 'Email') {
+                    displayErrorMessage($(DOMStrings.loginEmailField), data.msg)
+                } else if (data.errorField === 'Password') {
+                    displayErrorMessage($(DOMStrings.loginPasswordField), data.msg)
+                }
+            } else if (data.status === 'OK') {
+                clearInputFields()
+                window.location.href = data.url;
+            }
         })
     })
 

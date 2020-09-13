@@ -59,6 +59,13 @@ def login(request):
     password = request.POST.get('password')
     
     username = get_user_by_email(email)
+    if username is None:
+        return JsonResponse({
+            'status': 'KO',
+            'errorField': 'Email',
+            'msg': 'Email Does Not Exist'
+        })
+
     user = auth_authenticate(username=username, password=password)
 
     if user is not None:
@@ -68,11 +75,18 @@ def login(request):
                 'url': '/videos/home'
             })
         else:
-            pass
-            # Return a 'disabled account' error message
+            return JsonResponse({
+                'status': 'KO',
+                'errorField': 'Email',
+                'msg': 'This Email Has Been Disabled'
+            })
     else:
         pass
-        # Return an 'invalid login' error message.
+        return JsonResponse({
+            'status': 'KO',
+            'errorField': 'Password',
+            'msg': 'Invalid Password'
+        })
 
 def logout(request):
     auth_logout(request)
