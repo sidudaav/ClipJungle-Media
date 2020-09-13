@@ -14,7 +14,7 @@ input[type='email'] {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     margin-right: 2rem;
-
+    animation: moveInTop 800ms ease-in;
 }
 
 .text-header {
@@ -42,6 +42,7 @@ input[type='email'] {
     padding: 3rem 0;
     box-shadow: 0 1rem 2rem rgba(0 ,0, 0, 0.6);
     border-radius: 2rem;
+    animation: moveInLeft 800ms ease-in;
 }
 
 .login-form .form-group {
@@ -232,5 +233,29 @@ input[type='email'] {
     
     40%, 60% {
         transform: translateX(2rem)
+    }
+}
+
+@keyframes moveInLeft {
+    0% {
+        transform: translateX(15rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0rem);
+        opacity: 1;
+    }
+}
+
+@keyframes moveInTop {
+    0% {
+        transform: translateY(-15rem) translateY(-50%);;
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0rem) translateY(-50%);;
+        opacity: 1;
     }
 }
