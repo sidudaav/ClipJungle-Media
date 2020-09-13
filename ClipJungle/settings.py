@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ypybo@s+st&@yn!4+00*s63bnahamvbn9(vx1)2v#bg#(1^alf'
+SECRET_KEY = os.environ.get('CLIPJUNGLE_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -119,3 +119,11 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+# Email Settings
+EMAIL_HOST = 'smtp.gmail.com',
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('CLIPJUNGLE_EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('CLIPJUNGLE_EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = False
