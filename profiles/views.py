@@ -10,6 +10,7 @@ from .utils import get_user_by_email, get_user_by_username, send_verification_em
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
+from django.contrib.sites.shortcuts import get_current_site
 
 
 ######################## AUUTHENTICATION VIEWS ########################
@@ -42,7 +43,7 @@ def register(request):
     user.is_active = False
     user.save()
 
-    send_verification_email('localhost:8000', user.id)
+    send_verification_email(get_current_site(request), user.id)
     
     return JsonResponse({'status': 'OK'})
 
@@ -97,12 +98,13 @@ def activate(request, uidb64, token):
 
         user.save()
         Profile.objects.create(user=user)
-        
+
         return redirect('profiles:auth')
     else:
         return redirect('profiles:auth')
 
 def auth(request):
+    print(get_current_site(request))
     if request.user.is_authenticated:
         return redirect("videos:home")
         

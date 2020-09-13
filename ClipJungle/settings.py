@@ -13,7 +13,7 @@ SECRET_KEY = os.environ.get('CLIPJUNGLE_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', os.environ.get('HOME_IP')]
 
 
 # Application definition

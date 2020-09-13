@@ -174,8 +174,8 @@ $(document).ready(() => {
                 clearInputFields()
                 addAlert({
                     'type': 'success',
-                    'title': 'Registration Successful',
-                    'body': 'You may now log in'
+                    'title': 'Activate Your Account',
+                    'body': 'Check your email to activate your account'
                 })            
             }
         })
