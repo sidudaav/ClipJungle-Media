@@ -65,6 +65,7 @@ input[type='email'] {
     padding: 2rem 3rem;
     border-radius: 2px;
     border: 2px black solid;
+    transition: all 200ms;
 }
 
 .login-form input:focus {

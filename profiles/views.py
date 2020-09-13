@@ -7,6 +7,7 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .utils import get_user_by_email, get_user_by_username
+from django.core.mail import EmailMessage
 
 
 ######################## AUUTHENTICATION VIEWS ########################
@@ -36,8 +37,17 @@ def register(request):
     user = User.objects.create_user(username, email, password)
     user.first_name = first_name
     user.last_name = last_name
-
+    user.is_active = False
     user.save()
+
+    email = EmailMessage(
+        'Hello',
+        'Body goes here',
+        'from@example.com',
+        [email],
+    )
+
+    email.send(fail_silently=False)
 
     Profile.objects.create(user=user)
     

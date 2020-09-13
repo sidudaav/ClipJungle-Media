@@ -121,9 +121,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Email Settings
-EMAIL_HOST = 'smtp.gmail.com',
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('CLIPJUNGLE_EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('CLIPJUNGLE_EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
