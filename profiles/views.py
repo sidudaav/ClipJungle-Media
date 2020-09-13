@@ -62,6 +62,7 @@ def login(request):
         if user.is_active:
             auth_login(request, user)
             return JsonResponse({
+                'status': 'OK',
                 'url': '/videos/home'
             })
         else:
