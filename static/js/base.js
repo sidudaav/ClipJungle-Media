@@ -13,3 +13,13 @@ $.ajaxSetup({
         }
     }
 });
+
+const addAlert = (alert) => {
+    const html = `<li class="alert alert-${alert.type}"> <h3 class="alert-title">${alert.title}</h3><p class="alert-body">${alert.body}</p></li>`
+    $('.alerts-list').prepend(html)
+
+    const newAlert = $('.alerts-list li:first-child')
+    setTimeout(() => {
+        $(newAlert).hide()
+    }, 5000)
+}

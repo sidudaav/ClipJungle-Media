@@ -21,6 +21,9 @@
 
     --color-error: #cc0000;
 
+    --color-alert-success: rgba(0, 100, 0, 0.7);
+    --color-alert-danger: rgba(200, 0, 0, 0.7);
+
     --color-extra-light-grey: #E1E8ED;
     --color-light-grey: #AAB8C2;
     --color-dark-grey: #657786;
@@ -40,4 +43,35 @@ body {
     line-height: 1.7;
     font-weight: 400;
     background-color: var(--color-extra-light-grey);
+}
+
+.alerts-box {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    z-index: 10000;
+}
+
+.alerts-list {
+    list-style: none;
+}
+
+.alert {
+    color: var(--color-white-dark);
+    box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.4);
+}
+
+.alert:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.alert-success {
+    background-color: var(--color-alert-success)
+}
+
+.alert-danger {
+    background-color: var(--color-alert-danger)
+}
+.alert-body {
+    font-size: 1.2rem;
 }

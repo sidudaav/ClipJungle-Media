@@ -74,7 +74,6 @@ $(document).ready(() => {
         let msg = ''
         const illegalChars = /\W/ // allow letters, numbers, and underscores
         const val = $(fld).val()
-        console.log(val)
 
         if (val == '') {
             msg = 'First Name Is Empty'
@@ -93,7 +92,6 @@ $(document).ready(() => {
 
     // Validate Last Name for registration
     const validateLastName = fld => {
-        console.log('running')
         let msg = ''
         const illegalChars = /\W/ // allow letters, numbers, and underscores
         const val = $(fld).val()
@@ -112,7 +110,7 @@ $(document).ready(() => {
 
         return true
     }
-    
+
     // Handle submit for login form
     DOMStrings.loginForm.on('submit', (e) => {
         e.preventDefault()
@@ -165,6 +163,11 @@ $(document).ready(() => {
                 }
             } else if (data.status === 'OK') {
                 clearInputFields()
+                addAlert({
+                    'type': 'success',
+                    'title': 'Registration Successful',
+                    'body': 'You may now log in'
+                })            
             }
         })
     })

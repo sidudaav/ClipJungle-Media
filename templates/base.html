@@ -25,7 +25,19 @@
     {% block navbar %}{% endblock %}
 
     <div class="main" id="main">
-        {% block content %}{% endblock %}
+      <div class="alerts-box">
+        <ul class="alerts-list">
+          <!-- <li class="alert alert-success">
+            <h3 class="alert-title">Registration Successful</h3>
+            <p class="alert-body">You may now try to log in!</p>
+          </li>
+          <li class="alert alert-danger">
+            <h3 class="alert-title">Registration Successful</h3>
+            <p class="alert-body">You may now try to log in!</p>
+          </li> -->
+        </ul>
+      </div>
+      {% block content %}{% endblock %}
     </div>
 
     <!-- Optional JavaScript -->
