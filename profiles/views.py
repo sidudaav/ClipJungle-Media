@@ -6,19 +6,8 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate as auth_authenticate
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from .utils import get_user_by_email, get_user_by_username
 
-######################## BASIC HELPER FUNCTIONS ########################
-def get_user_by_email(email):
-    try:
-        return User.objects.get(email=email)
-    except User.DoesNotExist:
-        return None
-
-def get_user_by_username(username):
-    try:
-        return User.objects.get(username=username)
-    except User.DoesNotExist:
-        return None
 
 ######################## AUUTHENTICATION VIEWS ########################
 @require_POST
