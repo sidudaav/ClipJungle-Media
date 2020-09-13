@@ -175,6 +175,26 @@ input[type='email'] {
     border-color: var(--color-tertiary-light);
 }
 
+/* CSS FOR SHOW PASSWORD CHECKBOX */
+.register-form input[type=checkbox] {
+    height: 2rem;
+    width: 2rem;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.register-form label[for=showPassword] {
+    display: inline-block;
+    padding-right: 1rem;
+    white-space: nowrap;
+}
+
+.register-form label[for=showPassword] span {
+    font-size: 1.7rem;
+    vertical-align: middle;
+}
+
 /* CSS FOR MISC REGISTER FORM */
 
 .btn-register {

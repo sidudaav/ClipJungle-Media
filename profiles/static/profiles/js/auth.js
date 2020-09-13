@@ -111,6 +111,16 @@ $(document).ready(() => {
         return true
     }
 
+    // Show password when textbox is clicked
+    console.log($('#showPassword'))
+    $('#showPassword').on('click', () => {
+        if ($(DOMStrings.registerPasswordField).attr('type') === "password") {
+          $(DOMStrings.registerPasswordField).attr('type', 'text');
+        } else {
+          $(DOMStrings.registerPasswordField).attr('type', 'password');
+        }
+    })
+
     // Handle submit for login form
     DOMStrings.loginForm.on('submit', (e) => {
         e.preventDefault()
