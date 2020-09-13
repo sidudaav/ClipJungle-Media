@@ -8,9 +8,15 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
 ######################## BASIC HELPER FUNCTIONS ########################
-def get_user(email):
+def get_user_by_email(email):
     try:
         return User.objects.get(email=email)
+    except User.DoesNotExist:
+        return None
+
+def get_user_by_username(username):
+    try:
+        return User.objects.get(username=username)
     except User.DoesNotExist:
         return None
 
@@ -22,6 +28,20 @@ def register(request):
     username = request.POST.get('username')
     email = request.POST.get('email')
     password = request.POST.get('password')
+
+    if get_user_by_username(username):
+        return JsonResponse({
+            'status': 'KO',
+            'errorField': 'Username',
+            'msg': 'Username Is Taken'
+        })
+
+    if get_user_by_email(email):
+        return JsonResponse({
+            'status': 'KO',
+            'errorField': 'Email',
+            'msg': 'Email Is Taken'
+        })
 
     user = User.objects.create_user(username, email, password)
     user.first_name = first_name
@@ -38,7 +58,7 @@ def login(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
     
-    username = get_user(email)
+    username = get_user_by_email(email)
     user = auth_authenticate(username=username, password=password)
 
     if user is not None:

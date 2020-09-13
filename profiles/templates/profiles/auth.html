@@ -49,18 +49,23 @@
             <form class="register-form" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
+                    <label class="error-message"></label>
                     <input type="text" class="form-control" placeholder="First Name" id="registerFirstName" required>
                 </div>
                 <div class="form-group">
+                    <label class="error-message"></label>
                     <input type="text" class="form-control" placeholder="Last Name" id="registerLastName" required>
                 </div>
                 <div class="form-group">
+                    <label class="error-message"></label>
                     <input type="text" class="form-control" placeholder="Username" id="registerUsername" required>
                 </div>
                 <div class="form-group">
+                    <label class="error-message"></label>
                     <input type="email" class="form-control" placeholder="Email" id="registerEmail" required>
                 </div>
                 <div class="form-group">
+                    <label class="error-message"></label>
                     <input type="password" class="form-control" placeholder="Password" id="registerPassword" required>
                 </div>
                 <div class="form-group">

@@ -2,7 +2,11 @@
     height: 100vh;
 }
 
-/* CSS FOR LOGIN */
+input.animated {
+    animation: shakeField 600ms ease-out;
+}
+
+/* CSS FOR MAIN TEXT */
 
 .text-box {
     position: absolute;
@@ -22,6 +26,8 @@
 .text-sub {
     font-size: 3rem;
 }
+
+/* CSS FOR LOGIN */
 
 .auth {
     position: absolute;
@@ -113,6 +119,20 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
+.register-popup-close {
+    color: var(--color-tertiary-dark);
+    position: absolute;
+    top: 2.5rem;
+    right: 2.5rem;
+    font-size: 3rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all .2s;
+    line-height: 1;
+}
+
+/* CSS FOR REGISTER FORM GROUPS AND INPUTS */
+
 .register-form-box {
     position: absolute;
     top: 50%;
@@ -120,7 +140,8 @@
     transform: translate(-50%, -50%) scale(.25);
     transition: all .5s .2s;
     opacity: 0;
-    width: 30%;
+    width: 50%;
+    max-width: 80rem;
     background-color: var(--color-white);
     overflow: hidden;
     padding: 3rem 0;
@@ -154,6 +175,8 @@
     border-color: var(--color-tertiary-light);
 }
 
+/* CSS FOR MISC REGISTER FORM */
+
 .btn-register {
     background-color: var(--color-tertiary-dark);
     width: 100%;
@@ -164,14 +187,30 @@
     color: var(--color-extra-light-grey);
 }
 
-.register-popup-close {
-    color: var(--color-tertiary-dark);
-    position: absolute;
-    top: 2.5rem;
-    right: 2.5rem;
-    font-size: 3rem;
-    text-decoration: none;
-    display: inline-block;
-    transition: all .2s;
-    line-height: 1;
+/* CSS FOR ERROR MESSAGES */
+.error-message {
+    display: none;
+    color: var(--color-error);
+    font-size: larger;
+    font-weight: 700;
+}
+
+/* ANIMATIONS */
+
+@keyframes shakeField {
+    10%, 90% {
+        transform: translateX(-0.5rem)
+    }
+      
+    20%, 80% {
+        transform: translateX(1rem)
+    }
+    
+    30%, 50%, 70% {
+        transform: translateX(-2rem)
+    }
+    
+    40%, 60% {
+        transform: translateX(2rem)
+    }
 }
